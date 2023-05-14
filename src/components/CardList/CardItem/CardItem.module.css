@@ -33,6 +33,14 @@
     margin-bottom: 26px;
 }
 
+.left :first-child {
+    font-weight: bold;
+}
+
+.left :last-child {
+    color: #838383;
+}
+
 .right {
     align-items: end;
 }
@@ -45,10 +53,6 @@
 
 .right button:hover {
     color: #737373;
-}
-
-.left :first-child {
-    font-weight: bold;
 }
 
 .right :first-child {

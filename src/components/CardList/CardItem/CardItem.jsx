@@ -11,7 +11,7 @@ export default function CardItem({ id, img, title, price, rate }) {
         <div className={styles.left}>
           <span>{title}</span>
           <span>
-            <span style={{ color: "#FFCE7F" }}>★</span>
+            <span style={{ color: "#FFCE7F" }}>★ </span>
             {rate}
           </span>
         </div>
