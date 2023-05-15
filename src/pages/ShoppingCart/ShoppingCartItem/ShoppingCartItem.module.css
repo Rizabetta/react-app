@@ -1,0 +1,57 @@
+.container {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    width: 633px;
+    margin-bottom: 20px;
+}
+
+.upper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.upper img {
+    width: 130px;
+    padding: 10px;
+}
+
+.specifications {
+display: flex;
+align-items: center;
+}
+
+#styleprice {
+    display: block;
+    color: #AAAAAA;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+#delete {
+    height: 40px;
+    width: 40px;
+    margin: 0 10PX;
+}
+
+.lower {
+    padding: 0 20px ;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.change {
+    display: flex;
+    align-items: center;
+}
+
+.change img {
+    padding: 6px;
+    background-color: #FFCE7F;
+    border-radius:50%;
+}
+
+.change :first-child{
+    padding: 12px 6px;
+}

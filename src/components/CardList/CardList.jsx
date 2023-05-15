@@ -7,7 +7,7 @@ export default function CardList() {
   return (
     <div className={styles.container}>
       {products.map((item) => {
-        return <CardItem {...item} />;
+        return <CardItem key={item.id} {...item} />;
       })}
     </div>
   );
