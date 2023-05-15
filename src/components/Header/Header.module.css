@@ -15,3 +15,11 @@
     height: fit-content;
     
 }
+
+h3 {
+    color: black;
+}
+
+Link {
+    text-decoration: none;
+}

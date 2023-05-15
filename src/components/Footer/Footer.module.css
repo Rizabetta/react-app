@@ -19,10 +19,19 @@
     margin-bottom: 0;
 }
 
+.linklist a {
+    color: black;
+}
+
 .language {
     margin-top: 40px;
     display: flex;
     justify-content: space-around;
+    height: 20px;
+}
+
+.language img {
+    opacity: 40%;
 }
 
 .language_active{
