@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ShoppingCartItem.module.css";
 import del from "../../../assets/icons/Vectordel.svg";
 import minus from "../../../assets/icons/Vectorminus.svg";
 import plus from "../../../assets/icons/Vectorplus.svg";
 
-export default function CardItem({ id, img, title, price }) {
-  let f = sessionStorage.getItem(id);
+export default function CardItem({ id, img, title, price, updateProductList }) {
+  const [count, setCount] = useState(0);
+  const updateCount = () => {
+    setCount(+sessionStorage.getItem(id));
+  };
+  useEffect(() => {
+    updateCount();
+  }, []);
+  const handleInc = () => {
+    sessionStorage.setItem(id, count + 1);
+    updateCount();
+  };
+  const handleDec = () => {
+    if (+sessionStorage.getItem(id) > 1) {
+      sessionStorage.setItem(id, count - 1);
+    } else {
+      sessionStorage.removeItem(id);
+      updateProductList();
+    }
+    updateCount();
+  };
   return (
     <div className={styles.container}>
       <div className={styles.upper}>
@@ -16,13 +35,20 @@ export default function CardItem({ id, img, title, price }) {
             <span id={styles.styleprice}>{price} ₽</span>
           </div>
         </div>
-        <img del="delete" id={styles.delete} src={del} />
+        <img
+          del="delete"
+          onClick={() => {
+            sessionStorage.removeItem(id);
+          }}
+          id={styles.delete}
+          src={del}
+        />
       </div>
       <div className={styles.lower}>
         <div className={styles.change}>
-          <img alt={minus} src={minus}></img>
-          <span> {f} </span>
-          <img alt={plus} src={plus}></img>
+          <img onClick={handleDec} alt={minus} src={minus}></img>
+          <span> {count} </span>
+          <img onClick={handleInc} alt={plus} src={plus}></img>
         </div>
         <span>{price} ₽</span>
       </div>
