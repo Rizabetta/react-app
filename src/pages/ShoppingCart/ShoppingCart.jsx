@@ -12,7 +12,20 @@ export default function ShoppingCart() {
   useEffect(() => {
     updateProductList();
   }, []);
-
+  const [finalPrice, setFinalPrice] = useState(0);
+  function updateFinalPrice() {
+    let a = 0;
+    products.filter((item) => {
+      if (sessionStorage.getItem(item.id) !== null) {
+        a += item.price * sessionStorage.getItem(item.id);
+        console.log(a);
+      }
+    });
+    setFinalPrice(a);
+  }
+  useEffect(() => {
+    updateFinalPrice();
+  }, []);
   return (
     <div className={styles.container}>
       <Header />
@@ -23,6 +36,7 @@ export default function ShoppingCart() {
             return (
               <ShoppingCartItem
                 updateProductList={updateProductList}
+                updateFinalPrice={updateFinalPrice}
                 key={item.id}
                 {...item}
               />
@@ -32,7 +46,16 @@ export default function ShoppingCart() {
         <div className={styles.finalprice}>
           <div className={styles.price}>
             <span>ИТОГО</span>
-            <span>₽ 0</span>
+            {/* <span>
+              {productList?.map((item) => {
+                return (
+                  <span key={item.id} updateFinalPrice={updateFinalPrice}>
+                    {finalPrice}
+                  </span>
+                );
+              })}
+            </span> */}
+            <span>{finalPrice}</span>
           </div>
           <button>Перейти к оформлению</button>
         </div>

@@ -4,7 +4,14 @@ import del from "../../../assets/icons/Vectordel.svg";
 import minus from "../../../assets/icons/Vectorminus.svg";
 import plus from "../../../assets/icons/Vectorplus.svg";
 
-export default function CardItem({ id, img, title, price, updateProductList }) {
+export default function CardItem({
+  id,
+  img,
+  title,
+  price,
+  updateProductList,
+  updateFinalPrice,
+}) {
   const [count, setCount] = useState(0);
   const updateCount = () => {
     setCount(+sessionStorage.getItem(id));
@@ -15,6 +22,7 @@ export default function CardItem({ id, img, title, price, updateProductList }) {
   const handleInc = () => {
     sessionStorage.setItem(id, count + 1);
     updateCount();
+    updateFinalPrice();
   };
   const handleDec = () => {
     if (+sessionStorage.getItem(id) > 1) {
@@ -24,10 +32,12 @@ export default function CardItem({ id, img, title, price, updateProductList }) {
       updateProductList();
     }
     updateCount();
+    updateFinalPrice();
   };
   const handleRemove = () => {
     sessionStorage.removeItem(id);
     updateProductList();
+    updateFinalPrice();
   };
   return (
     <div className={styles.container}>
