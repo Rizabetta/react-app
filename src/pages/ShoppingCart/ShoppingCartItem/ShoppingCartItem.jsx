@@ -25,6 +25,10 @@ export default function CardItem({ id, img, title, price, updateProductList }) {
     }
     updateCount();
   };
+  const handleRemove = () => {
+    sessionStorage.removeItem(id);
+    updateProductList();
+  };
   return (
     <div className={styles.container}>
       <div className={styles.upper}>
@@ -35,14 +39,7 @@ export default function CardItem({ id, img, title, price, updateProductList }) {
             <span id={styles.styleprice}>{price} ₽</span>
           </div>
         </div>
-        <img
-          del="delete"
-          onClick={() => {
-            sessionStorage.removeItem(id);
-          }}
-          id={styles.delete}
-          src={del}
-        />
+        <img del="delete" onClick={handleRemove} id={styles.delete} src={del} />
       </div>
       <div className={styles.lower}>
         <div className={styles.change}>
