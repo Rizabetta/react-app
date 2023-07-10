@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import styles from "./ShoppingCart.module.css";
@@ -18,7 +18,10 @@ export default function ShoppingCart() {
     products.filter((item) => {
       if (sessionStorage.getItem(item.id) !== null) {
         a += item.price * sessionStorage.getItem(item.id);
-        console.log(a);
+        console.log(Intl.NumberFormat('ru-RU',{
+          style: 'currency',
+          currency: 'RUB',
+        }).format(a));
       }
     });
     setFinalPrice(a);
@@ -27,40 +30,42 @@ export default function ShoppingCart() {
     updateFinalPrice();
   }, []);
   return (
-    <div className={styles.container}>
-      <Header />
-      <span>Корзина</span>
-      <div className={styles.basket}>
-        <div>
-          {productList?.map((item) => {
-            return (
-              <ShoppingCartItem
-                updateProductList={updateProductList}
-                updateFinalPrice={updateFinalPrice}
-                key={item.id}
-                {...item}
-              />
-            );
-          })}
-        </div>
-        <div className={styles.finalprice}>
-          <div className={styles.price}>
-            <span>ИТОГО</span>
-            {/* <span>
-              {productList?.map((item) => {
-                return (
-                  <span key={item.id} updateFinalPrice={updateFinalPrice}>
-                    {finalPrice}
-                  </span>
-                );
-              })}
-            </span> */}
-            <span>{finalPrice}</span>
+    <>
+      <div className={styles.container}>
+        <Header />
+        <span>Корзина</span>
+        <div className={styles.basket}>
+          <div>
+            {productList?.map((item) => {
+              return (
+                <ShoppingCartItem
+                  updateProductList={updateProductList}
+                  updateFinalPrice={updateFinalPrice}
+                  key={item.id}
+                  {...item}
+                />
+              );
+            })}
           </div>
-          <button>Перейти к оформлению</button>
+          <div className={styles.finalprice}>
+            <div className={styles.price}>
+              <span>ИТОГО</span>
+              {/* <span>
+                {productList?.map((item) => {
+                  return (
+                    <span key={item.id} updateFinalPrice={updateFinalPrice}>
+                      {finalPrice}
+                    </span>
+                  );
+                })}
+              </span> */}
+              <span>{finalPrice}</span>
+            </div>
+            <button>Перейти к оформлению</button>
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }

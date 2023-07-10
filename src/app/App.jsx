@@ -4,12 +4,12 @@ import ShoppingCart from "../pages/ShoppingCart/ShoppingCart";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/ShoppingCart" element={<ShoppingCart />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
